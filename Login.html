@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZZY - Login / Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .background-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 20vw;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.05);
+            white-space: nowrap;
+            z-index: -1;
+            animation: flow 20s linear infinite;
+        }
+        @keyframes flow {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            25% {
+                transform: translateX(5%) translateY(5%);
+            }
+            50% {
+                transform: translateX(0) translateY(10%);
+            }
+            75% {
+                transform: translateX(-5%) translateY(5%);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+            z-index: 1;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-group {
+            position: relative;
+            margin: 10px 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .toggle {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .toggle a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-text">QUIZZY</div>
+    <div class="container">
+        <div id="loginForm">
+            <h2>Login to QUIZZY</h2>
+            <form action="#" method="post">
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <i class="password-toggle fas fa-eye" onclick="togglePassword(this)"></i>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="toggle">
+                Don't have an account? <a href="#" onclick="toggleForms()">Register</a>
+            </div>
+        </div>
+        
+        <div id="registerForm" style="display: none;">
+            <h2>Register for QUIZZY</h2>
+            <form action="#" method="post">
+                <div class="input-group">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <i class="password-toggle fas fa-eye" onclick="togglePassword(this)"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <i class="password-toggle fas fa-eye" onclick="togglePassword(this)"></i>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div class="toggle">
+                Already have an account? <a href="#" onclick="toggleForms()">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            var loginForm = document.getElementById('loginForm');
+            var registerForm = document.getElementById('registerForm');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+
+        function togglePassword(icon) {
+            var input = icon.previousElementSibling;
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
+</body>
+</html>
